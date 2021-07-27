@@ -6,7 +6,7 @@ class I_Loader( ABC):
 
     conn = None
 
-    def load( self, rows ):
+    def load( self, row ):
         pass
 
     def load_batch( self, rows ):

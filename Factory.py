@@ -8,6 +8,7 @@ from Transformer_txt    import Transformer_txt
 
 from Loader_pandas      import Loader_pandas
 from Loader_txt         import Loader_txt
+from Loader_csv         import Loader_csv
 
 
 class Factory:
@@ -50,6 +51,8 @@ class Factory:
             loader = None
             if type == 'pandas':
                 loader = Loader_pandas()
+            elif type == 'csv':
+                loader = Loader_csv()
             else:
                 loader = Loader_txt()
 
