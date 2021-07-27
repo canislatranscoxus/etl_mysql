@@ -7,7 +7,7 @@ class Etl:
 
     extractor   = None
     transformer = None
-    Loader_txt  = None
+    loader      = None
 
 
     def transform( self ):
@@ -18,6 +18,7 @@ class Etl:
 
     def run( self ):
         try:
+            self.loader.connect()
             clean_data = []
             batch_size = 20
             i = 0
@@ -47,7 +48,8 @@ class Etl:
 
         factory = Factory()
 
-        self.extractor   = factory.create_extractor( 'csv', file_path )
+        self.extractor   = factory.create_extractor  ( 'csv', file_path )
         self.transformer = factory.create_transformer( 'csv' )
+        self.loader      = factory.create_loader     ( 'csv' )
 
         print( 'Etl.__init__() ... end' )

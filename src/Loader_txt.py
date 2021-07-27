@@ -1,7 +1,10 @@
 
 from I_Loader import I_Loader
 
-class Loader_csv( I_Loader ):
+class Loader_txt( I_Loader ):
+
+    def connect( self ):
+        pass
 
     def load( self, row ):
         pass
