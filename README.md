@@ -62,8 +62,8 @@ python -m pip install -r requirements.txt
 
 ### links
 
-
-
+* dowload sepomex zipcodes 
+https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/CodigoPostal_Exportar.aspx
 
 * importing bulk csv data
 
