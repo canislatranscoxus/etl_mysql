@@ -1,3 +1,4 @@
 #mysqlclient==2.0.1
 cryptography==3.3.1
 PyMySQL==1.0.2
+Unidecode==1.2.0

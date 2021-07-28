@@ -22,6 +22,7 @@ class Etl:
     def run( self ):
         try:
             self.loader.connect()
+            self.loader.delete_table()
             clean_data = []
             i = 0
             reader = self.extractor.get_reader()

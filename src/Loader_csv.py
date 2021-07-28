@@ -5,7 +5,8 @@ from I_Loader import I_Loader
 
 class Loader_csv( I_Loader ):
 
-    cur = None
+    cur         = None
+    table_name  = 'ship_cp'
 
     def connect( self ):
         try:
@@ -32,12 +33,22 @@ class Loader_csv( I_Loader ):
             print( 'Loader_csv.connect(), error: {}'.format( e ) )
             raise
 
+    def delete_table( self ):
+        try:
+            sql = 'delete from {}'.format( self.table_name )
+            self.cur.execute( sql )
+            self.conn.commit()
+
+        except Exception as e:
+            print( 'Loader_csv.delete_table(), error: {}'.format( e ) )
+
+
     def load( self, row ):
         pass
 
     def load_batch( self, rows ):
         try:
-            sql = '''insert into ship_cp (
+            sql = '''insert into {} (
                 d_codigo,d_asenta,d_tipo_asenta,D_mnpio,d_estado,
                 d_ciudad,d_CP,c_estado,c_oficina,c_tipo_asenta,
                 c_mnpio,id_asenta_cpcons,d_zona,c_cve_ciudad,c_CP 
@@ -46,7 +57,7 @@ class Loader_csv( I_Loader ):
                 (
                 %s,%s,%s,%s,%s,
                 %s,%s,%s,%s,%s,
-                %s,%s,%s,%s,%s )'''
+                %s,%s,%s,%s,%s )'''.format( self.table_name )
 
             self.cur.executemany( sql, rows )
             self.conn.commit()
