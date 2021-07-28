@@ -30,6 +30,7 @@ class Loader_csv( I_Loader ):
 
         except Exception as e:
             print( 'Loader_csv.connect(), error: {}'.format( e ) )
+            raise
 
     def load( self, row ):
         pass
@@ -45,8 +46,7 @@ class Loader_csv( I_Loader ):
                 (
                 %s,%s,%s,%s,%s,
                 %s,%s,%s,%s,%s,
-                %s,%s,%s,%s,%s )                 
-            '''
+                %s,%s,%s,%s,%s )'''
 
             self.cur.executemany( sql, rows )
             self.conn.commit()

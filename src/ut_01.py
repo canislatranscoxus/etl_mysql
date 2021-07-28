@@ -9,8 +9,11 @@ def t_01():
     reader = extractor.get_reader()
 
 def t_02():
+    ''' Test etl with small file '''
 
     etl =  Etl( )
+   
+    etl.batch_size = 50
     etl.run()
 
 
