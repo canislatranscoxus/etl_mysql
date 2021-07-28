@@ -1,7 +1,7 @@
-
 from Extractor_csv  import Extractor_csv
 from Loader_txt     import Loader_txt
 from Factory        import Factory
+from Timer          import Timer
 
 class Etl:
     file_path   = None
@@ -19,7 +19,7 @@ class Etl:
     def load( self ):
         pass
 
-    def run( self ):
+    def step_csv_2_lz( self ):
         try:
             self.loader.connect()
             self.loader.delete_table()
@@ -54,7 +54,25 @@ class Etl:
 
 
         except Exception as e:
+            print( 'Etl.step_csv_2_lz(), error: {}'.format( e ) )            
+
+
+
+
+    def run( self ):
+        try:
+            timer = Timer()
+            timer.start()
+
+            self.step_csv_2_lz()
+            self.loader.step_lz_2_stg()
+            self.loader.step_stg_2_final()
+
+            timer.stop()
+
+        except Exception as e:
             print( 'Etl.run(), error: {}'.format( e ) )            
+
 
 
     def __init__( self ):

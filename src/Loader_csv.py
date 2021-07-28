@@ -6,7 +6,7 @@ from I_Loader import I_Loader
 class Loader_csv( I_Loader ):
 
     cur         = None
-    table_name  = 'ship_cp'
+    table_name  = 'lz_sepomex_cp'
 
     def connect( self ):
         try:
@@ -64,6 +64,34 @@ class Loader_csv( I_Loader ):
 
         except Exception as e:
             print( 'Loader_csv.load_batch(), error: {}'.format( e ) )
+
+
+    def exec_sql( self, file_path ):
+        try:
+            with open( file_path, 'r') as reader:
+                sql = reader.read()
+
+            self.cur.execute( sql )
+            self.conn.commit()
+
+        except Exception as e:
+            print( 'Loader_csv.step_lz_2_stg(), error: {}'.format( e ) )
+
+
+    def step_lz_2_stg( self ):
+        try:
+            self.exec_sql( '/home/art/git/etl_mysql/sql/lz_2_stg.sql' )
+
+        except Exception as e:
+            print( 'Loader_csv.step_lz_2_stg(), error: {}'.format( e ) )
+
+    def step_stg_2_final( self ):
+        try:
+            self.exec_sql( '/home/art/git/etl_mysql/sql/stg_2_final.sql' )
+
+        except Exception as e:
+            print( 'Loader_csv.step_stg_2_final(), error: {}'.format( e ) )
+
 
     def __init__(self) -> None:
         self.conn = None
