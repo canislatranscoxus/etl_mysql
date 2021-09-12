@@ -66,7 +66,7 @@ class Etl:
 
             self.step_csv_2_lz()
             self.loader.step_lz_2_stg()
-            self.loader.step_stg_2_final()
+            #self.loader.step_stg_2_final()
 
             timer.stop()
 
