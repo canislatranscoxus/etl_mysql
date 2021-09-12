@@ -5,7 +5,7 @@ import pymysql
 class Test_mysql( ):
 
     cur         = None
-    table_name  = 'lz_sepomex_cp'
+
 
     def run( self ):
         try:
